@@ -1,0 +1,169 @@
+---
+title: Erin Grand's Resume"
+author: Erin Grand
+date: "`r Sys.Date()`"
+params:
+  pdf_mode:
+    value: true
+  resume_only:
+    value: true
+output:
+  pagedown::html_resume:
+    css: ['css/custom_resume.css', 'css/styles.css', 'resume']
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: true
+---
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+
+library(magrittr) # For the pipe
+library(glue)
+
+source("cv_printing_functions.r")
+
+googlesheets4::gs4_auth(email = "eringrand@gmail.com", 
+                        cache = TRUE, 
+                        use_oob = TRUE)
+
+# Read in all data and initialize a CV printer object
+CV <- create_CV_object(
+  data_location = "https://docs.google.com/spreadsheets/d/1x4O3YQoz8cr99gD4v7wLec2e61Pqfim6Qm2J-10AM90",
+  sheet_is_publicly_readable = FALSE,
+  pdf_mode = params$pdf_mode,
+  resume_only = params$resume_only
+)
+```
+
+```{r}
+CV$entries_data %<>%
+    dplyr::mutate(
+    # Build some custom sections by collapsing others
+    section = dplyr::case_when(
+      section %in% c('data_science_writings', 'by_me_press') ~ 'writings',
+      TRUE ~ section
+    )
+  ) 
+```
+
+
+
+Aside
+================================================================================
+
+
+<!-- ![logo](logo.png){width=100%} -->
+
+Contact {#contact}
+--------------------------------------------------------------------------------
+
+```{r}
+CV$contact_info %>% 
+  glue_data("- <i class='fa fa-{icon}'></i> {contact}")
+```
+
+
+
+Language Skills {#skills}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_skill_bars()
+```
+
+
+
+<!-- Open Source Contributions {#open-source} -->
+<!-- -------------------------------------------------------------------------------- -->
+
+<!-- All projects available at `github.com/nstrayer/<name>` -->
+
+
+<!-- - `shinysense`: R package to use sensor data in Shiny apps -->
+<!-- - `tuftesque`: Hugo theme (behind LiveFreeOrDichotomize.com) -->
+<!-- - `sbmR`: R package for fitting stochasitic block models -->
+
+
+<!-- More info {#more-info} -->
+<!-- -------------------------------------------------------------------------------- -->
+
+<!-- See full CV at nickstrayer.me/cv for more complete list of positions and publications. -->
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+Made w/ [**pagedown**](https://github.com/rstudio/pagedown). 
+
+Source code: [github.com/eringrand/cv](https://github.com/eringrand/cv).
+
+Last updated on `r Sys.Date()`.
+
+
+
+Main
+================================================================================
+
+Erin Grand {#title}
+--------------------------------------------------------------------------------
+
+```{r}
+print_text_block(CV, 'intro')
+```
+
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_section('education')
+```
+
+
+Tech Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_section('industry_positions')
+```
+
+Teaching Experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+
+```{r}
+CV %<>% print_section('teaching_positions')
+```
+
+Research Experience {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_section('research_positions')
+```
+
+
+
+Selected Writing {data-icon=newspaper}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_section('writings')
+```
+
+Memberships
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('membership')
+```
+
+Hobbies:
+--------------------------------------------------------------------------------
+
+Royal Scottish Country Dancing, Singing, Board Games
