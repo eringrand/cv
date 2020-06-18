@@ -83,14 +83,22 @@ Language Skills {#skills}
 CV %>% print_skill_bars()
 ```
 
+Relevant Courses {#course}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_text_block('skills_aside')
+```
+
+
 
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
 
-Made with the R package [**pagedown**](https://github.com/rstudio/pagedown). 
+Made with the R package [**pagedown**](https://github.com/rstudio/pagedown).
 
-The source code is available [on github.com/nstrayer/cv](https://github.com/nstrayer/datadrivencv).
+The source code is available [on github.com/eringrand/cv](https://github.com/eringrand/cv).
 
 Last updated on `r Sys.Date()`.
 

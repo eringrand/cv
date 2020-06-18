@@ -75,33 +75,20 @@ Language Skills {#skills}
 CV %>% print_skill_bars()
 ```
 
-
-
-<!-- Open Source Contributions {#open-source} -->
-<!-- -------------------------------------------------------------------------------- -->
-
-<!-- All projects available at `github.com/nstrayer/<name>` -->
-
-
-<!-- - `shinysense`: R package to use sensor data in Shiny apps -->
-<!-- - `tuftesque`: Hugo theme (behind LiveFreeOrDichotomize.com) -->
-<!-- - `sbmR`: R package for fitting stochasitic block models -->
-
-
-<!-- More info {#more-info} -->
-<!-- -------------------------------------------------------------------------------- -->
-
-<!-- See full CV at nickstrayer.me/cv for more complete list of positions and publications. -->
-
-
-Disclaimer {#disclaimer}
+Relevant Courses 
 --------------------------------------------------------------------------------
 
-Made w/ [**pagedown**](https://github.com/rstudio/pagedown). 
+```{r}
+CV %>% print_text_block('skills_aside')
+```
 
-Source code: [github.com/eringrand/cv](https://github.com/eringrand/cv).
+Memberships {#other}
+--------------------------------------------------------------------------------
 
-Last updated on `r Sys.Date()`.
+### R-Ladies NYC board member
+
+
+
 
 
 
@@ -147,23 +134,3 @@ Research Experience {data-icon=laptop}
 CV %>% print_section('research_positions')
 ```
 
-
-
-Selected Writing {data-icon=newspaper}
---------------------------------------------------------------------------------
-
-```{r}
-CV %>% print_section('writings')
-```
-
-Memberships
---------------------------------------------------------------------------------
-
-```{r}
-CV %<>% print_section('membership')
-```
-
-Hobbies:
---------------------------------------------------------------------------------
-
-Royal Scottish Country Dancing, Singing, Board Games
