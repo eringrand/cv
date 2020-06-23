@@ -16,6 +16,11 @@ h3 {
   color: #000;
 }
 
+[data-id="address"] {
+   text-align: center;
+}
+
+
 /* When in PDF export mode make sure superscripts are nice and small and italic */
 sup {
   font-size: 0.45rem;
@@ -76,7 +81,7 @@ sup {
   content: "• ";
 }
 
-/* Make sure elements in asside are centered and have a nice small text */
+/* Make sure elements in aside are centered and have a nice small text */
 .aside {
   width: calc(var(--sidebar-width) + 9px);
   line-height: 1.2;

@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display&display=swap");
+
+/* Main text is monserrat*/
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  line-height: 1.1;
+  font-size: 0.8rem;
+  color: #444;
+}
+
+/* Give headers playfair font */
+h1,
+h2,
+h3 {
+  font-family: "Playfair Display", serif;
+  color: #000;
+}
+
+
+/* When in PDF export mode make sure superscripts are nice and small and italic */
+sup {
+  font-size: 0.45rem;
+  font-style: italic;
+}

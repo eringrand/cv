@@ -85,7 +85,7 @@ CV %>% print_text_block('skills_aside')
 Memberships {#other}
 --------------------------------------------------------------------------------
 
-### R-Ladies NYC board member
+#### R-Ladies NYC board member 2020
 
 
 
@@ -98,11 +98,9 @@ Main
 Erin Grand {#title}
 --------------------------------------------------------------------------------
 
-```{r}
-print_text_block(CV, 'intro')
-```
-
-
+<!-- ```{r} -->
+<!-- print_text_block(CV, 'intro') -->
+<!-- ``` -->
 
 Education {data-icon=graduation-cap data-concise=true}
 --------------------------------------------------------------------------------
@@ -119,13 +117,13 @@ Tech Experience {data-icon=suitcase}
 CV %>% print_section('industry_positions')
 ```
 
-Teaching Experience {data-icon=chalkboard-teacher}
---------------------------------------------------------------------------------
+<!-- Teaching Experience {data-icon=chalkboard-teacher} -->
+<!-- -------------------------------------------------------------------------------- -->
 
 
-```{r}
-CV %<>% print_section('teaching_positions')
-```
+<!-- ```{r} -->
+<!-- CV %<>% print_section('teaching_positions') -->
+<!-- ``` -->
 
 Research Experience {data-icon=laptop}
 --------------------------------------------------------------------------------
