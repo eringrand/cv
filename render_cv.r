@@ -5,34 +5,37 @@
 # loaded and load the cached version in the .Rmd instead of re-fetching it twice
 # for the HTML and PDF rendering. This exercise is left to the reader.
 
-# Knit the HTML version
-rmarkdown::render("cv.rmd",
-                  params = list(pdf_mode = FALSE,
-                                resume_only = FALSE),
-                  output_file = "cv.html")
+write_pdfs <- function(rmd_name, html_name, pdf_name, resume_only = FALSE) {
+  # Knit the HTML version
+  rmarkdown::render(rmd_name,
+                    params = list(pdf_mode = FALSE,
+                                  resume_only = resume_only),
+                    output_file = html_name)
 
-rmarkdown::render("resume.rmd",
-                  params = list(pdf_mode = FALSE,
-                                resume_only = TRUE),
-                  output_file = "resume.html")
+  # Knit the PDF version to temporary html location
+  tmp_html_cv_loc <- fs::file_temp(ext = ".html")
+
+  rmarkdown::render(rmd_name,
+                    params = list(pdf_mode = TRUE,
+                                  resume_only = resume_only),
+                    output_file = tmp_html_cv_loc)
+
+  # Convert to PDF using Pagedown
+  pagedown::chrome_print(input = tmp_html_cv_loc,
+                         output = pdf_name)
+
+  rmarkdown::render(rmd_name,
+                    params = list(pdf_mode = TRUE,
+                                  resume_only = resume_only),
+                    output_file = tmp_html_cv_loc)
+
+  # Convert to PDF using Pagedown
+  pagedown::chrome_print(input = tmp_html_cv_loc,
+                         output = pdf_name)
+}
 
 
-# Knit the PDF version to temporary html location
-tmp_html_cv_loc <- fs::file_temp(ext = ".html")
-rmarkdown::render("cv.rmd",
-                  params = list(pdf_mode = TRUE,
-                                resume_only = FALSE),
-                  output_file = tmp_html_cv_loc)
+write_pdfs("resume.rmd", "resume.html", "resume.pdf", resume_only = TRUE)
+write_pdfs("cv.rmd", "cv.html", "cv.pdf", resume_only = FALSE)
+write_pdfs("cover_letter.rmd", "cover_letter.html", "cover_letter.pdf", resume_only = FALSE)
 
-# Convert to PDF using Pagedown
-pagedown::chrome_print(input = tmp_html_cv_loc,
-                       output = "cv.pdf")
-
-rmarkdown::render("resume.rmd",
-                  params = list(pdf_mode = TRUE,
-                                resume_only = TRUE),
-                  output_file = tmp_html_cv_loc)
-
-# Convert to PDF using Pagedown
-pagedown::chrome_print(input = tmp_html_cv_loc,
-                       output = "resume.pdf")
