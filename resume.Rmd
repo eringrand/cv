@@ -75,12 +75,20 @@ Language Skills {#skills}
 CV %>% print_skill_bars()
 ```
 
-Relevant Courses 
+Relevant Skills 
 --------------------------------------------------------------------------------
 
 ```{r}
 CV %>% print_text_block('skills_aside')
 ```
+
+Relevant Courses 
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_text_block('courses_aside')
+```
+
 
 Memberships {#other}
 --------------------------------------------------------------------------------
