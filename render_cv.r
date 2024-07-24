@@ -38,7 +38,6 @@ write_pdfs <- function(rmd_name, html_name, pdf_name, resume_only = FALSE) {
 write_pdfs("resume.rmd", "resume.html", "resume.pdf", resume_only = TRUE)
 write_pdfs("cv.rmd", "cv.html", "cv.pdf", resume_only = FALSE)
 #write_pdfs("cover_letter_headspace.rmd", "cover_letter_headspace.html", "cover_letter_headspace.pdf", resume_only = FALSE)
-#write_pdfs("cover_letter_rstudio.rmd", "cover_letter_rstudio.html", "cover_letter_rstudio.pdf", resume_only = FALSE)
 
 # library(pdftools)
 #
