@@ -3,3 +3,5 @@
 cv.Rproj
 .DS_Store
 .Rhistory
+cover_letter_*
+cover_letter.Rmd
