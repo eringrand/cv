@@ -6,7 +6,7 @@ output:
     css: ['css/cover_letter.css', 'letter']
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
-links-to-footnotes: true
+links-to-footnotes: false
 paged-footnotes: false
 params:
   pdf_mode:
@@ -22,27 +22,28 @@ New York, NY 10025
 Email: eringrand@gmail.com 
 :::
 
-Space Telescope Science Institute   
-3700 San Martin Drive   
-Baltimore, MD 21218   
 
 ::: date
-June 23, 2020
+Jan 23, 2022
 :::
 
 To whom this may concern,
 
-Hello, my name is Erin Grand and I am writing in response to your open position for an Astronomical Data Scientist position at Space Telescope Science Institute, as seen on Twitter.  While I was confident from the posting alone that this would be a great next step in my career, discussing the position and expectations with Dr. Arfon Smith and Dr. Ivelina Momcheva cemented it for me. Between my research work and practical experience, I bring a combined 9 years of experience in both data science and astronomy to a role that feels perfectly tailored to all of my interests.
+Hello, my name is Erin Grand, and I am writing for consideration of a job at Headspace Health. I have 6 years of experience working as a Data Scientist, 8 years of writing in R and SQL, and 4 years of practice training in R.
 
-I received both my undergraduate and masters degrees in astronomy from the University of Maryland in 2007 and 2014 respectively.  During my course of study, I worked at NASA to create an [ultraviolet mosaic of Andromeda](https://www.nasa.gov/mission_pages/swift/bursts/uv_andromeda.html). This image has been featured on [Astronomy Picture of the Day](https://apod.nasa.gov/apod/ap101027.html) twice since publication. As part of my thesis research, I spent 3 years working with data from the CARMA radio observatory to study dense gas in star forming regions. I also worked with the Education and Public Outreach sector at NASA Goddard Space Flight Center on two projects, the Science on a Sphere data library, and the traveling Hubble Space Telescope museum exhibit. 
+My love of education, statistics, and coding drove me to a career in data science.  After completing my MS degree at Columbia University, I applied my skills at organizations with public good in mind, such as my past work at the Crisis Text Line and Uncommon Schools.
 
-My research work drove me to pursue a career in data science, because of my love of statistics and coding.  Since then I have applied my skills at organizations that have true public good in mind, such as my past work at the Crisis Text Line.  While there, I was able to use data to help redefine the application process to bring in the best people to be counselors. At Uncommon Schools, a charter management organization with more than 50 schools, I created several predictive models to help teachers identify students most at risk of not passing state exams.
+At Crisis Text Line, a text based crisis hotline, I worked on the online training platform helping trainers better assist their trainees in how to be crisis counselors. I transitioned to work at Uncommon Schools, a charter management organization with more than 50 schools, to work more directly with education research. I created several predictive models to help teachers identify students most at risk of not passing state exams and enable school leaders to view students at risk of attrition.
 
-A driving career goal for me has been to combine my astronomy and data science passions to further science. I’m excited to apply this energy and determination to grow and learn at Space Telescope Science Institute. 
+I care deeply about mental health and have been an active Headspace user for several years. I would love to be a part of making this amazing resource even better. 
 
-Thank you for your consideration.
+Thank you kindly for your time and consideration, and I hope to hear from you soon.
+
+
 
 Sincerely yours, 
 
-![Erin's signature](signiture.png)  
+![Erin's signature](signiture.png)
+
+
 Erin Grand
