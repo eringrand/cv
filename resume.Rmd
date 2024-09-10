@@ -1,5 +1,5 @@
 ---
-title: Erin Grand's Resume"
+title: "Erin Grand's Resume"
 author: Erin Grand
 date: "`r Sys.Date()`"
 params:
@@ -7,9 +7,9 @@ params:
     value: true
 output:
   pagedown::html_resume:
+    css: ['css/custom_resume.css', 'css/dd_cv.css', 'resume']
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
-    css: ['css/custom_resume.css', 'css/dd_cv.css', 'resume']
 ---
 
 
@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
   results='asis', 
   echo = FALSE
 )
-library(glue)
 
 source("cv_printing_functions.r")
 
@@ -30,7 +29,8 @@ googlesheets4::gs4_auth(email = "eringrand@gmail.com",
 CV <- create_CV_object(
   data_location = "https://docs.google.com/spreadsheets/d/1x4O3YQoz8cr99gD4v7wLec2e61Pqfim6Qm2J-10AM90",
   sheet_is_publicly_readable = FALSE,
-  pdf_mode = params$pdf_mode
+  pdf_mode = params$pdf_mode,
+  resume_mode = TRUE
 )
 ```
 
@@ -46,34 +46,23 @@ if(params$pdf_mode) {
 }
 ```
 
-```{r}
-CV$entries_data %<>%
-    dplyr::mutate(
-    # Build some custom sections by collapsing others
-    section = dplyr::case_when(
-      section %in% c('data_science_writings', 'by_me_press') ~ 'writings',
-      TRUE ~ section
-    )
-  ) 
-```
-
 
 
 Aside
 ================================================================================
 
-<!-- ```{r} -->
-<!-- # Build interactive network of positions colored by section -->
-<!-- # and connected if they occurred in the same year -->
-<!-- datadrivencv::build_network_logo(CV$entries_data) -->
-<!-- ``` -->
+```{r}
+# Build interactive network of positions colored by section
+# and connected if they occurred in the same year
+# datadrivencv::build_network_logo(CV$entries_data)
+```
 
 
 <!-- ```{r} -->
 <!-- if(params$pdf_mode){ -->
-<!--   cat("View this resume online with links at _nickstrayer.me/resume/_") -->
+<!--   cat("View this CV online with links at _eringrand.github.io_") -->
 <!-- } else { -->
-<!--   cat("[<i class='fas fa-download'></i> Download a PDF of this CV](https://github.com/nstrayer/cv/raw/master/strayer_resume.pdf)") -->
+<!--   cat("[<i class='fas fa-download'></i> Download a PDF of this CV](https://github.com/eringrand/cv/raw/master/resume.pdf)") -->
 <!-- } -->
 <!-- ``` -->
 
@@ -82,8 +71,6 @@ Contact {#contact}
 
 ```{r}
 CV |> print_contact_info()
-# CV$contact_info |> 
-#  glue_data("- <i class='fa fa-{icon}'></i> {contact}")
 ```
 
 
@@ -126,7 +113,6 @@ Erin Grand {#title}
 --------------------------------------------------------------------------------
 
 <!-- ```{r} -->
-<!-- # Note the special double pipe so we modify the CV object in place -->
 <!-- CV <- print_text_block(CV, "intro")  -->
 <!-- ``` -->
 
@@ -145,13 +131,6 @@ Tech Experience {data-icon=suitcase data-concise=true}
 CV <- print_section(CV, 'industry_positions')
 ```
 
-<!-- Teaching Experience {data-icon=chalkboard-teacher} -->
-<!-- -------------------------------------------------------------------------------- -->
-
-
-<!-- ```{r} -->
-<!-- CV %<>% print_section('teaching_positions') -->
-<!-- ``` -->
 
 Research Experience {data-icon=laptop}
 --------------------------------------------------------------------------------

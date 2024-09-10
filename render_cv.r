@@ -17,17 +17,17 @@ write_pdfs <- function(rmd_name, html_name, pdf_name, resume_only = FALSE) {
   rmarkdown::render(rmd_name,
                     params = list(pdf_mode = TRUE),
                     output_file = tmp_html_cv_loc)
-
-  # Convert to PDF using Pagedown
+  #
+  # # Convert to PDF using Pagedown
   pagedown::chrome_print(input = tmp_html_cv_loc,
                          output = pdf_name)
 
 }
 
 
-write_pdfs("resume.rmd", "resume.html", "resume.pdf", resume_only = TRUE)
-# write_pdfs("cv.rmd", "cv.html", "cv.pdf", resume_only = FALSE)
-# write_pdfs("cover_letter_headspace.rmd", "cover_letter_headspace.html", "cover_letter_headspace.pdf", resume_only = FALSE)
+# write_pdfs("resume.rmd", "resume.html", "resume.pdf")
+write_pdfs("cv.rmd", "cv.html", "cv.pdf")
+# write_pdfs("cover_letter_headspace.rmd", "cover_letter_headspace.html", "cover_letter_headspace.pdf"
 
 # library(pdftools)
 #
