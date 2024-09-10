@@ -5,13 +5,11 @@ date: "`r Sys.Date()`"
 params:
   pdf_mode:
     value: true
-  resume_only:
-    value: true
 output:
   pagedown::html_resume:
-    css: ['css/custom_resume.css', 'css/styles.css', 'resume']
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
+    css: ['css/custom_resume.css', 'css/dd_cv.css', 'resume']
 ---
 
 
@@ -20,8 +18,6 @@ knitr::opts_chunk$set(
   results='asis', 
   echo = FALSE
 )
-
-library(magrittr) # For the pipe
 library(glue)
 
 source("cv_printing_functions.r")
@@ -34,9 +30,20 @@ googlesheets4::gs4_auth(email = "eringrand@gmail.com",
 CV <- create_CV_object(
   data_location = "https://docs.google.com/spreadsheets/d/1x4O3YQoz8cr99gD4v7wLec2e61Pqfim6Qm2J-10AM90",
   sheet_is_publicly_readable = FALSE,
-  pdf_mode = params$pdf_mode,
-  resume_only = params$resume_only
+  pdf_mode = params$pdf_mode
 )
+```
+
+```{r}
+# When in pdf export mode the little dots are unaligned, so fix that with some conditional CSS.
+if(params$pdf_mode) {
+    cat("
+<style>
+:root{
+  --decorator-outer-offset-left: -6.5px;
+}
+</style>")
+}
 ```
 
 ```{r}
@@ -55,38 +62,50 @@ CV$entries_data %<>%
 Aside
 ================================================================================
 
+<!-- ```{r} -->
+<!-- # Build interactive network of positions colored by section -->
+<!-- # and connected if they occurred in the same year -->
+<!-- datadrivencv::build_network_logo(CV$entries_data) -->
+<!-- ``` -->
 
-<!-- ![logo](logo.png){width=100%} -->
+
+<!-- ```{r} -->
+<!-- if(params$pdf_mode){ -->
+<!--   cat("View this resume online with links at _nickstrayer.me/resume/_") -->
+<!-- } else { -->
+<!--   cat("[<i class='fas fa-download'></i> Download a PDF of this CV](https://github.com/nstrayer/cv/raw/master/strayer_resume.pdf)") -->
+<!-- } -->
+<!-- ``` -->
 
 Contact {#contact}
 --------------------------------------------------------------------------------
 
 ```{r}
-CV$contact_info %>% 
-  glue_data("- <i class='fa fa-{icon}'></i> {contact}")
+CV |> print_contact_info()
+# CV$contact_info |> 
+#  glue_data("- <i class='fa fa-{icon}'></i> {contact}")
 ```
-
 
 
 Language Skills {#skills}
 --------------------------------------------------------------------------------
 
 ```{r}
-CV %>% print_skill_bars()
+CV |> print_skill_bars()
 ```
 
 Relevant Skills 
 --------------------------------------------------------------------------------
 
 ```{r}
-CV %>% print_text_block('skills_aside')
+CV |> print_text_block('skills_aside')
 ```
 
 Relevant Courses 
 --------------------------------------------------------------------------------
 
 ```{r}
-CV %>% print_text_block('courses_aside')
+CV |> print_text_block('courses_aside')
 ```
 
 
@@ -107,22 +126,23 @@ Erin Grand {#title}
 --------------------------------------------------------------------------------
 
 <!-- ```{r} -->
-<!-- print_text_block(CV, 'intro') -->
+<!-- # Note the special double pipe so we modify the CV object in place -->
+<!-- CV <- print_text_block(CV, "intro")  -->
 <!-- ``` -->
 
 Education {data-icon=graduation-cap data-concise=true}
 --------------------------------------------------------------------------------
 
 ```{r}
-CV %>% print_section('education')
+CV <- print_section(CV, 'education')
 ```
 
 
-Tech Experience {data-icon=suitcase}
+Tech Experience {data-icon=suitcase data-concise=true}
 --------------------------------------------------------------------------------
 
 ```{r}
-CV %>% print_section('industry_positions')
+CV <- print_section(CV, 'industry_positions')
 ```
 
 <!-- Teaching Experience {data-icon=chalkboard-teacher} -->
@@ -137,6 +157,6 @@ Research Experience {data-icon=laptop}
 --------------------------------------------------------------------------------
 
 ```{r}
-CV %>% print_section('research_positions')
+CV <- print_section(CV, 'research_positions')
 ```
 
