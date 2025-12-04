@@ -116,12 +116,6 @@ Erin Grand {#title}
 <!-- CV <- print_text_block(CV, "intro")  -->
 <!-- ``` -->
 
-Education {data-icon=graduation-cap data-concise=true}
---------------------------------------------------------------------------------
-
-```{r}
-CV <- print_section(CV, 'education')
-```
 
 
 Tech Experience {data-icon=suitcase data-concise=true}
@@ -131,6 +125,12 @@ Tech Experience {data-icon=suitcase data-concise=true}
 CV <- print_section(CV, 'industry_positions')
 ```
 
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV <- print_section(CV, 'education')
+```
 
 Research Experience {data-icon=laptop}
 --------------------------------------------------------------------------------
