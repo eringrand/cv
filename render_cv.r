@@ -25,9 +25,9 @@ write_pdfs <- function(rmd_name, html_name, pdf_name, resume_only = FALSE) {
 }
 
 
-write_pdfs("resume.rmd", "resume.html", "resume.pdf")
+write_pdfs("resume.rmd", "resume.html", "grand_resume.pdf")
 # write_pdfs("cv.rmd", "cv.html", "cv.pdf")
-write_pdfs("cover_letter.rmd", "cover_letter.html", "cover_letter.pdf")
+# write_pdfs("cover_letter.Rmd", "cover_letter_mta.html", "cover_letter_mta.pdf")
 
-# pdftools::pdf_combine(c("cover_letter_freelance.pdf", "resume.pdf"),
+# pdftools::pdf_combine(c("cover_letter.pdf", "grand_resume.pdf"),
 #             output = "combined_letter_resume.pdf")
